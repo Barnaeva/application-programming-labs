@@ -5,8 +5,13 @@ from icrawler.builtin import GoogleImageCrawler
 
 
 def dl_img(keyword:str , name_dir:str, num:int)->None:
-    """получает на вход ключевое слово , название файла,куда должны быть скачаны картинки, и количество картинок,
-     проверяет наличие файла, загружает картинки с интернета"""
+    """
+    Function downloads images
+    :param keyword: what kind of images are needed to download
+    :param name_dir: dir to save images
+    :param num: count of images
+    :return: None
+    """
     if os.path.exists(name_dir):
         shutil.rmtree(name_dir)
         os.mkdir(name_dir)
