@@ -3,8 +3,10 @@ import os
 
 class MyIterator:
     def __init__(self, name_dir):
-        """конструктор"""
-        data=os.listdir(name_dir)
+            """конструктор"""
+        data=[]
+        for name in os.listdir(name_dir):
+            data=os.path.join(name_dir,name)
         limit=len(data)
         self.data=data
         self.limit = limit
