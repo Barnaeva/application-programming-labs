@@ -6,7 +6,10 @@ from iterator import MyIterator
 
 
 def pars() -> tuple[str, int, str, str]:
-    """парсер запрашиваеет с терминала название картинок, папки,  файла аннотации и количество картинок """
+    """
+    Function parses arguments from command line
+    :return: arguments
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('keyword', type=str, help='name img pls')
     parser.add_argument('-nm', '--num', type=int, help='the num img pls')
