@@ -12,27 +12,27 @@ def pars() -> (str, float):
     """
     parser = argparse.ArgumentParser(description='Process an image with optional rotation.')
     parser.add_argument('name_file', type=str, help='Name of the image file.')
-    parser.add_argument('-a', '--angel', type=float, help='Rotation angle in degrees.')
+    parser.add_argument('-a', '--angle', type=float, help='Rotation angle in degrees.')
     args = parser.parse_args()
 
-    return args.name_file, args.angel
+    return args.name_file, args.angle
 
 
-def main(): 
+def main():
     try:
-        name_file, angel = pars()
-    
+        name_file, angle = pars()
+
         img = read(name_file)
         look_img(img)
         size_img = size(img)
-    
+
         hist = make_histogram(img)
         make_pic(hist)
-    
-        if angel is not None:  # Check if angle is provided
-            dst = rotation(img, size_img, angel)
+
+        if angle is not None:
+            dst = rotation(img, size_img, angle)
             look_img(dst)
-    
+
         print(f"Image size: {size_img}")
     except Exception as exc:
         print(f"Error: {exc}")
