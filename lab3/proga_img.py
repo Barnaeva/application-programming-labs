@@ -9,11 +9,8 @@ def read(name_file: str) -> ndarray:
     :param name_file: Name of the image file.
     :return: The image read from the file (ndarray).
     """
-    try:
-        my_img = cv2.imread(name_file)
-        return my_img
-    except FileNotFoundError as exc:
-        print(exc)
+    my_img = cv2.imread(name_file)
+    return my_img
 
 
 def look_img(my_img: ndarray) -> None:
