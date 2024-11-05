@@ -1,7 +1,7 @@
 import argparse
 
 from histogram import make_histogram, make_pic
-from proga_img import look_img, read, size
+from img_processing import look_img, read, size
 from task import rotation
 
 
@@ -18,22 +18,24 @@ def pars() -> (str, float):
     return args.name_file, args.angel
 
 
-def main():
-    name_file, angel = pars()
-
-    img = read(name_file)
-    look_img(img)
-    size_img = size(img)
-
-    hist = make_histogram(img)
-    make_pic(hist)
-
-    if angel is not None:  # Check if angle is provided
-        dst = rotation(img, size_img, angel)
-        look_img(dst)
-
-    print(f"Image size: {size_img}")
-
+def main(): 
+    try:
+        name_file, angel = pars()
+    
+        img = read(name_file)
+        look_img(img)
+        size_img = size(img)
+    
+        hist = make_histogram(img)
+        make_pic(hist)
+    
+        if angel is not None:  # Check if angle is provided
+            dst = rotation(img, size_img, angel)
+            look_img(dst)
+    
+        print(f"Image size: {size_img}")
+    except Exception as exc:
+        print(f"Error: {exc}")
 
 if __name__ == "__main__":
     main()
