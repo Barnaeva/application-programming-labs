@@ -1,5 +1,5 @@
 import argparse
-from DataFrame import make_df, add_shape, static_data, fil_df, new_par, sort_df, plot_area_histogram
+from work_DataFrame import make_df, add_shape, static_data, fil_df, new_par, sort_df, plot_area_histogram
 
 def pars() -> (str, int, int):
     parser = argparse.ArgumentParser(description='Process an image with optional rotation.')
