@@ -11,7 +11,7 @@ def make_df(name_file: str) -> pd.DataFrame:
     :return: DataFrame
     """
     df = pd.read_csv(name_file, header=None)
-    df.columns = ['Absolute Path', 'Relative Path']
+    df.columns = ['Absolute_Path', 'Relative_Path']
     return df
 
 
