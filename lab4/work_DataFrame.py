@@ -81,8 +81,9 @@ def plot_area_histogram(df: pd.DataFrame) -> None:
     :param df: DataFrame
     :return: None
     """
+    plt.figure()
 
-    df['Area'].plot(kind='line', color="pink")
+    df['Area'].diff().hist()
 
     plt.title('Histogram of areas')
     plt.xlabel('Area')
