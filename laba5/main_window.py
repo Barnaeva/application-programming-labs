@@ -1,14 +1,16 @@
 import sys
+
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QLabel, QVBoxLayout, QHBoxLayout, QWidget
 from PyQt5.QtGui import QPixmap
-from iterator import MyIterator
 from PyQt5.QtCore import Qt
+
+from iterator import MyIterator
 
 
 class MainWindow(QtWidgets.QMainWindow):
 
-    def __init__(self)->None:
+    def __init__(self) -> None:
         """
         make window and layout grid
         """
@@ -49,36 +51,37 @@ class MainWindow(QtWidgets.QMainWindow):
         self.image_iterator = None
         self.current_image = None
 
-
-    def open_folder_dialog(self)->None:
+    
+    def open_folder_dialog(self) -> None:
         """
-        get name folder from file dialog
+        Get name folder from file dialog
         :return: None
         """
         folder_name = QFileDialog.getExistingDirectory(self, "Select Folder")
+        
         if folder_name:
             self.image_iterator = MyIterator(folder_name)
-            self.current_image = next(self.image_iterator)
-            if self.current_image:
+            try:
+                self.current_image = next(self.image_iterator)
                 self.display_image(self.current_image)
                 self.err_text.hide()
-            else:
+            except StopIteration:
                 self.err_text.setText("No images found in the selected folder.")
                 self.err_text.show()
 
-
-    def display_image(self, image_path)->None:
+    
+    def display_image(self, image_path) -> None:
         """
         show pictures
         :param image_path: image path
-        :return:None
+        :return: None
         """
         pixmap = QPixmap(image_path)
         scaled_pixmap = pixmap.scaled(self.image_label.size(), aspectRatioMode=1)
         self.image_label.setPixmap(scaled_pixmap)
 
-
-    def show_next_image(self)->None:
+    
+    def show_next_image(self) -> None:
         """
         display next image in main window
         :return: None
@@ -92,7 +95,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.err_text.show()
 
 
-def application()->None:
+def application() -> None:
     """
     make window
     :return: None
@@ -102,5 +105,9 @@ def application()->None:
     main_window.show()
     sys.exit(app.exec_())
 
+
 if __name__ == "__main__":
-    application()
+    try:
+        application()
+    except Exception as e:
+        print(f'Something went wrong: {e}')
